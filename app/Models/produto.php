@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class produto extends Model
+{
+    use HasFactory;
+    protected $table = "produto";
+
+    function fornecedor()
+    {
+        return $this->belongsTo(fornecedor::class, 'idFornecedor', 'id');
+    }
+}
