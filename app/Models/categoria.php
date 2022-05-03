@@ -5,8 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class categoria extends Model
+class Categoria extends Model
 {
     use HasFactory;
     protected $table = 'categoria';
+
+    function produtoCategoria(){
+        return $this->hasMany(produto_categoria::class, 'categoria_id', 'id');
+    }
 }
