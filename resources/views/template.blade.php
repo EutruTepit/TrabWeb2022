@@ -116,10 +116,10 @@
 
     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a href="#" class="btn btn-primary nav-link botao" id="login">Login</a>
+          <a href="{{ route('login') }}" class="btn btn-primary nav-link botao" id="login">Login</a>
         </li>
         <li class="nav-item">
-          <a href="#" class="btn btn-primary nav-link botao" id="registrar">Registrar-se</a>
+          <a href="{{ route('register') }}" class="btn btn-primary nav-link botao" id="registrar">Registrar-se</a>
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link"><img class="carrinho" src="https://cdn.discordapp.com/attachments/664223166582751252/971473361798586458/transparent-bg-designify.png" alt=""></a>
