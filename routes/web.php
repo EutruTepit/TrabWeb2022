@@ -14,20 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 # Rotas que precisam de autenticação para entrar
-Route::middleware('auth')->group(function(){
+Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
 
     # Agrupamento de rotas referentes ao admin
-    Route::middleware('verifica.admin')->group(function(){
-
+    Route::middleware('verifica.admin')->group(function () {
     });
-
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

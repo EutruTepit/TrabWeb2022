@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('produto', function (Blueprint $table) {
+        Schema::create('produto', function (Blueprint $table) {
             $table->softDeletes();
             $table->id();
             $table->string('nome', 200);
