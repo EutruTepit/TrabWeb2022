@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Produto;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,8 @@ Route::middleware('auth')->group(function () {
 
     # Agrupamento de rotas referentes ao admin
     Route::middleware('verifica.admin')->group(function () {
+        Route::get('/produtos/lista', [Produto::class, '']);
+        Route::get('/produtos/novo', [Produto::class, 'addProduto']);
     });
 });
 

@@ -30,9 +30,9 @@
         <label for="dataLancamento">Data de lançamento</label>
         <input type="text" name="nome" id="dataLancamento"><br>
 
-        <label for="arquivo">Arquivo</label>
+        <!--<label for="arquivo">Arquivo</label>
         <input type="file" name="arquivo" id="arquivo">
-
+        -->
         <input type="submit" value="Enviar">
 </form>
 
