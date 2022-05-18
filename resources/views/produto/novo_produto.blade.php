@@ -11,11 +11,18 @@
         <label for="descricao">Descrição</label>
         <input type="text" name="nome" id="descricao" required><br>
 
-        <label for="preco">Preço</label>
+        <label for="preco">Preço (R$)</label>
         <input type="text" name="nome" id="preco" required><br>
 
         <label for="dataLancamento">Data de lançamento</label>
         <input type="text" name="nome" id="dataLancamento" required><br>
+
+        <label for="fornecedor_id" class="form-label">Fornecedor</label>
+        <select class="form-select" name="fornecedor_id" id="fornecedor_id">
+            @foreach ($fornecedores as $f)
+                <option value="{{ $f->id }}">{{ $f->nome }}</option>
+            @endforeach
+        </select><br>
 
         <!--<label for="arquivo">Arquivo</label>
         <input type="file" name="arquivo" id="arquivo">

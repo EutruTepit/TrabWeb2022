@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fornecedor;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class ProdutoContoller extends Controller
     }
 
     function viewAddProduto(){
-        return view('produto.novo_produto');
+        $fornecedores = Fornecedor::all();
+
+        return view('produto.novo_produto', ['fornecedores' => $fornecedores]);
     }
 
     function viewUpdateProduto(){
