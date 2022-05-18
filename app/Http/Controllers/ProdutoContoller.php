@@ -7,13 +7,17 @@ use Illuminate\Http\Request;
 
 class ProdutoContoller extends Controller
 {
-    function viewAddProduto()
-    {
+    function viewListProdutos(){
+        $produtos = Produto::all();
+
+        return view('produto.lista_produto', ['produtos' => $produtos]);
+    }
+
+    function viewAddProduto(){
         return view('produto.novo_produto');
     }
 
-    function viewUpdateProduto()
-    {
+    function viewUpdateProduto(){
         return view('produto.detalhe_produto');
     }
 
