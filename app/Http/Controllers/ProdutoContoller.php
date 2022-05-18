@@ -34,7 +34,7 @@ class ProdutoContoller extends Controller
         return to_route('dashboard');
     }
 
-    function detalheProduto($id){
+    function viewDetalheProduto($id){
         $produto = Produto::findOrFail($id);
 
         return view('produto.detalhe_produto', ['produto' => $produto]);
