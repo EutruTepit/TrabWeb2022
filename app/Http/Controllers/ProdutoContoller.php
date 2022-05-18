@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produto;
 use Illuminate\Http\Request;
 
-class Produto extends Controller
+class ProdutoContoller extends Controller
 {
     function viewAddProduto(){
         return view('produto_novo');
@@ -24,7 +25,7 @@ class Produto extends Controller
     }
 
     function searchProduto($id){
-
+        $produto = Produto::findOrFail($id);
     }
 
     function updateProduto(Request $req){
@@ -32,6 +33,7 @@ class Produto extends Controller
     }
 
     function delateProduto($id){
-        
+        $produto = Produto::findOrFail($id);
+
     }
 }
