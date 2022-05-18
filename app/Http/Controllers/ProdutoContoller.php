@@ -18,7 +18,7 @@ class ProdutoContoller extends Controller
     }
 
     function viewUpdateProduto(){
-        return view('produto.detalhe_produto');
+        return view('produto.update_produto');
     }
 
     function addProduto(Request $req){
