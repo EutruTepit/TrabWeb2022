@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Produto;
+use App\Http\Controllers\ProdutoContoller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,8 +26,18 @@ Route::middleware('auth')->group(function () {
 
     # Agrupamento de rotas referentes ao admin
     Route::middleware('verifica.admin')->group(function () {
-        Route::get('/produtos/lista', [Produto::class, '']);
-        Route::get('/produtos/novo', [Produto::class, 'addProduto']);
+
+        // Agrupamento por controller
+        Route::controller(ProdutoContoller::class)->group(function () {
+            Route::get('/produtos/lista', 'viewListaProdutos')->name('lita_produtos');
+            Route::get('/produtos/detalhe/{id}', 'viewDetalheProduto')->name('view_detalhe_produto');
+            Route::get('/produtos/novo', 'viewAddProduto')->name('view_produto');
+            Route::post('/produtos/novo', 'addProduto')->name('add_produto');
+            Route::get('/produtos/update', 'viewUpdateProduto')->name('view_update_produto');
+            Route::post('/produtos/update', 'updateProduto')->name('update_produto');
+            Route::get('/produtos/delete/{id}', 'deleteProduto')->name('deleteProduto');
+        });
+
     });
 });
 
