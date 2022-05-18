@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\produto;
 
-class fornecedor extends Model
+class Fornecedor extends Model
 {
     use HasFactory;
 
@@ -14,6 +14,6 @@ class fornecedor extends Model
 
     function produto()
     {
-        return $this->hasMany(produto::class, 'idFornecedor', 'id');
+        return $this->hasMany(Produto::class, 'idFornecedor', 'id');
     }
 }
