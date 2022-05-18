@@ -18,7 +18,7 @@
         <input type="text" name="nome" id="dataLancamento" required><br>
 
         <label for="fornecedor_id" class="form-label">Fornecedor</label>
-        <select class="form-select" name="fornecedor_id" id="fornecedor_id">
+        <select class="form-select" name="fornecedor_id" id="fornecedor_id" required>
             @foreach ($fornecedores as $f)
                 <option value="{{ $f->id }}">{{ $f->nome }}</option>
             @endforeach
