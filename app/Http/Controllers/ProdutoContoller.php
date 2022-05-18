@@ -55,7 +55,7 @@ class ProdutoContoller extends Controller
         return to_route('dashboard');
     }
 
-    function delateProduto($id){
+    function deleteProduto($id){
         Produto::findOrFail($id)->delete();;
 
         return to_route('dashboard');
