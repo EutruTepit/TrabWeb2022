@@ -20,8 +20,11 @@ class ProdutoContoller extends Controller
         return view('produto.novo_produto', ['fornecedores' => $fornecedores]);
     }
 
-    function viewUpdateProduto(){
-        return view('produto.update_produto');
+    function viewUpdateProduto($id){
+        $produto = Produto::findOrFail($id);
+        $fornecedores = Fornecedor::all();
+
+        return view('produto.update_produto', ['produto' => $produto, 'fornecedores' => $fornecedores]);
     }
 
     function addProduto(Request $req){
