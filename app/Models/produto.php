@@ -6,17 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\fornecedor;
 
-class produto extends Model
+class Produto extends Model
 {
     use HasFactory;
     protected $table = "produto";
 
     function fornecedor()
     {
-        return $this->belongsTo(fornecedor::class, 'idFornecedor', 'id');
+        return $this->belongsTo(Fornecedor::class, 'idFornecedor', 'id');
     }
 
     function produtoCategoria(){
-        return $this->hasMany(produto_categoria::class, 'produto_id', 'id');
+        return $this->hasMany(Produto_categoria::class, 'produto_id', 'id');
     }
 }
