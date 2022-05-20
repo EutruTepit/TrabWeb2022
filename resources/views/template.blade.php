@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <title>GAME_BOX</title>
 <style>
@@ -80,8 +80,8 @@
       align-self: auto;
     }
 
-    .categorias{
-
+    .borda_baixo_card{
+      margin-bottom: 30px;
     }
 </style>
     
@@ -100,13 +100,13 @@
       <a class="navbar-brand" href="#"><img id="imglogo" src="https://cdn.discordapp.com/attachments/664223166582751252/971078154821173278/unknown.png" alt=""></a></a>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 xl-0">
         <li class="nav-item">
-          <a class="nav-link filtro" href="#">Promoções </a>
+          <a class="nav-link filtro align-self-end" href="#">Promoções </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link filtro" href="#">Lançamentos</a>
+          <a class="nav-link filtro align-self-end" href="#">Lançamentos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link filtro" href="#">Mais Vendidos</a>
+          <a class="nav-link filtro align-self-end" href="#">Mais Vendidos</a>
         </li>
       </ul>
       <form class="d-flex">
@@ -134,9 +134,22 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-2" >@yield('categorias') </div>
-            <div class="col-9">@yield('conteudo')</div>
-            <div class="col-1"></div>
+            <div class="col-2" style="padding:0px;">
+              <div class="aba_categorias h-100 p-3 text-light bg-dark">
+    <div>
+        <p class="align-self-end" style="font-size:20px">Categorias</p>
+    </div>
+    <div class="categorias"> <!-- Para teste apenas--->
+        <p>Terror</p>
+        <p>Aventura</p>
+        <p>Tiro</p>
+        <p>RPG</p>
+        <p>Sobrivivencia</p>
+    </div>
+</div>
+             </div>
+            <div class="col-9 bg-dark" style="padding-left:0px">@yield('conteudo')</div>
+            <div class="col-1 bg-dark "></div>
     </div>
 </div>
 </div>
