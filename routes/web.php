@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientesContoller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,13 +16,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 # Rotas que precisam de autenticação para entrar
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::controller(ClientesContoller::class)->group(function () {
+        Route::get('/produtos/perfil/', 'viewPerfilCliente')->name('view_perfil_cliente');
+        Route::get('/produtos/perfil/update/', 'viewUpdateCliente')->name('view_update_cliente');
+        Route::get('/produtos/perfil/delete/', 'deleteCliente')->name('delete_Cliente');
+    });
 
     # Agrupamento de rotas referentes ao admin
     Route::middleware('verifica.admin')->group(function () {
