@@ -51,7 +51,7 @@
             <div>
                 <x-label for="telefone" :value="__('Telefone')" />
 
-                <x-input id="data_nasc" class="block mt-1 w-full" type="date" name="data_nasc" :value="old('telefone')" required autofocus />
+                <x-input id="telefone" class="block mt-1 w-full" type="number" name="telefone" :value="old('telefone')" required autofocus />
             </div>
 
             <!-- Endereco -->
