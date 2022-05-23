@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
     })->name('dashboard');
 
     Route::controller(ClientesContoller::class)->group(function () {
+        Route::post('/clientes', 'cadastrarCliente')->name('cadastrar_cliente');
         Route::get('/clientes/perfil/', 'viewPerfilCliente')->name('view_perfil_cliente');
         Route::get('/clientes/perfil/update/', 'viewUpdateCliente')->name('view_update_cliente');
         Route::get('/clientes/perfil/delete/', 'deleteCliente')->name('delete_Cliente');

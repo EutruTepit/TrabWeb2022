@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Auth;
 
 class ClientesContoller extends Controller
 {
+    function cadastrarCliente(Request $request){
+        $cliente = new Cliente();
+
+        $cliente->name = $request->input('cliente');
+        
+    }
+
     function viewUpdateCliente(){
         $cliente = Cliente::where('user_id', '=', Auth::id())->first();
 
