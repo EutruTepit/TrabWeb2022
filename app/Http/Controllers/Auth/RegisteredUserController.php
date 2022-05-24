@@ -23,6 +23,10 @@ class RegisteredUserController extends Controller
         return view('auth.register');
     }
 
+    public function createAdmin(){
+        return view('auth.register', ["nivel" => ""]);
+    }
+
     /**
      * Handle an incoming registration request.
      *
@@ -35,8 +39,9 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'cpf' => ['required', 'numeric', 'min:15', 'max:15', 'unique:cliente,cpf'],
-            'rg' => ['required', 'numeric', 'min:7', 'max:7', 'unique:cliente,rg'], #talvez retirar pq cada unidade federativa tem um padrao diferente
+            'cpf' => ['required', 'numeric', 'unique:cliente,cpf'],
+            'nivel' => ['required'],
+            'rg' => ['required', 'numeric', 'unique:cliente,rg'], #talvez retirar pq cada unidade federativa tem um padrao diferente
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -45,12 +50,15 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'nivel' => $request->nivel,
         ]);
 
         event(new Registered($user));
 
-        Auth::login($user);
-
+        if($request->nivel == "0"){
+            Auth::login($user);
+        }
+        dd($request, $user);
         return redirect(RouteServiceProvider::HOME);
     }
 }
