@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ClientesContoller;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,8 @@ Route::middleware('auth')->group(function () {
 
     # Agrupamento de rotas referentes ao admin
     Route::middleware('verifica.admin')->group(function () {
+        Route::get('/register/admin', [RegisteredUserController::class, 'createAdmin'])->name('view_registrar_admin');
+        Route::post('/register/admin', [RegisteredUserController::class, 'store'])->name('registar_admin');
     });
 });
 

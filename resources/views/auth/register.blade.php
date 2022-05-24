@@ -8,9 +8,11 @@
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('register') }}">
+            
+        <form method="POST" action="{{ !isset($nivel)? route('register'):route('registar_admin') }}">
             @csrf
+
+            <x-input id="nivel" type="hidden" name="nivel" :value="!isset($nivel)? 0:1"/>
 
             <!-- Name -->
             <div>
