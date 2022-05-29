@@ -21,6 +21,8 @@
                     </div>
                     </div>
                 </div>  
+                    You're logged in!
+                    <a href="{{ route('registar_admin') }}">Adicionar novo administrador</a>
                 </div>
             </div>
         </div>
