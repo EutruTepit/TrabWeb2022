@@ -14,6 +14,6 @@ class Fornecedor extends Model
 
     function produto()
     {
-        return $this->hasMany(produto::class, 'idFornecedor', 'id');
+        return $this->hasMany(Produto::class, 'idFornecedor', 'id');
     }
 }

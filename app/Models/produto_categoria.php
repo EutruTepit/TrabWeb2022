@@ -11,7 +11,7 @@ class Produto_categoria extends Model
     protected $table = 'produto_categoria';
 
     function produtos(){
-        return $this->belongsToMany(produto::class);
+        return $this->belongsToMany(Produto::class);
     }
 
     function categorias(){
