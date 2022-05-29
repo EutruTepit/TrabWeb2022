@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ClientesContoller;
 use App\Http\Controllers\ProdutoContoller;
@@ -50,6 +49,10 @@ Route::middleware('auth')->group(function () {
             Route::get('/produtos/delete/{id}', 'deleteProduto')->name('delete_Produto');
         });
     });
+
+    #Rotas para produtos 
+    Route::get('/produto/novo', [ProdutosController::class, 'cadastro_novo']);
+    Route::post('/produto/novo', [ProdutosController::class, 'novo'])->name('produto_novo');
 });
 
 require __DIR__ . '/auth.php';
