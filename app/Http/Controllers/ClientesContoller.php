@@ -11,7 +11,6 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 class ClientesContoller extends RegisteredUserController
 {
     function cadastrarCliente(Request $request){
-        //dd($request);
         
         parent::store($request);
         $cliente = new Cliente();
@@ -20,7 +19,14 @@ class ClientesContoller extends RegisteredUserController
         $cliente->rg = $request->input('rg');
         $cliente->data_nasc = $request->input('data_nasc');
         $cliente->telefone = $request->input('telefone');
-    	$cliente->endereco = $request->input('endereco');
+        $cliente->cep = $request->input("cep");
+        $cliente->logradouro = $request->input("logradouro");
+        $cliente->complemento = $request->input("complemento");
+        $cliente->numero = $request->input("numero");
+        $cliente->bairro = $request->input("bairro");
+        $cliente->localidade = $request->input("localidade");
+        $cliente->uf = $request->input("uf");
+
         $cliente->user_id = Auth::id();
 
         $cliente->save();
