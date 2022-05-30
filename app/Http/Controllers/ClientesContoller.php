@@ -32,6 +32,7 @@ class ClientesContoller extends RegisteredUserController
         $cliente->save();
 
         return to_route('dashboard');
+
     }
 
     function updateCliente(Request $request){
