@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::controller(VendasController::class)->group(function(){
         Route::get('/carrinho', 'viewListCarrinho')->name('view_list_carrinho');
         Route::get('/carrinho/add/{$id_produto}/{$qtd}', 'addCarrinho')->name('add_produto_carrinho');
-        Route::get('/carrinho/delete/{$id_produto}', 'deleteProduto')->name('add_produto_carrinho');
+        Route::get('/carrinho/delete/{$id_produto}', 'deleteProduto')->name('delete_produto_carrinho');
         Route::get('/carrinho/finalizarCompra', 'efetivarCompra')->name('efetivar_Compra');
     });
 
@@ -58,7 +58,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/produtos/delete/{id}', 'deleteProduto')->name('delete_Produto');
         });
     });
-    
+
 });
 
 require __DIR__ . '/auth.php';
