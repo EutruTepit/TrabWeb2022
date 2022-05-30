@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ClientesContoller;
 use App\Http\Controllers\ProdutoContoller;
+use App\Http\Controllers\VendasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,14 @@ Route::middleware('auth')->group(function () {
         Route::get('/clientes/perfil/delete/', 'deleteCliente')->name('delete_Cliente');
     });
 
+    //Controlle sobre venda
+    Route::controller(VendasController::class)->group(function(){
+        Route::get('/carrinho', 'viewListCarrinho')->name('view_list_carrinho');
+        Route::get('/carrinho/add/{$id_produto}/{$qtd}', 'addCarrinho')->name('add_produto_carrinho');
+        Route::get('/carrinho/delete/{$id_produto}', 'deleteProduto')->name('add_produto_carrinho');
+        Route::get('/carrinho/finalizarCompra', 'efetivarCompra')->name('efetivar_Compra');
+    });
+
     # Agrupamento de rotas referentes ao admin
     Route::middleware('verifica.admin')->group(function () {
         Route::get('/register/admin', [RegisteredUserController::class, 'createAdmin'])->name('view_registrar_admin');
@@ -49,10 +58,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/produtos/delete/{id}', 'deleteProduto')->name('delete_Produto');
         });
     });
-
-    #Rotas para produtos 
-    Route::get('/produto/novo', [ProdutosController::class, 'cadastro_novo']);
-    Route::post('/produto/novo', [ProdutosController::class, 'novo'])->name('produto_novo');
+    
 });
 
 require __DIR__ . '/auth.php';

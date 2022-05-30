@@ -1,0 +1,40 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Produto;
+use Illuminate\Support\Facades\Session;
+
+class VendasController extends Controller
+{
+    function viewListCarrinho(){
+        return view('cliente.carrinho');
+    }
+
+    function addCarrinho($id_produto, $qtd){
+        if(!Session::exists('carrinho')){
+            Session::put('carrinho', []);
+        }
+        Session::push('carrinho', [$id_produto=>$qtd]);
+
+        return to_route('view_list_carrinho');
+    }
+
+    function deleteProduto($id_produto){
+        Session::pull('carrinho', [$id_produto]);
+
+        return to_route('view_list_carrinho');
+    }
+
+    function efetivarCompra(){
+        $carrinho = Session::get('carrinho');
+        $valor_total = 0.0;
+        foreach ($carrinho as $id_produto => $qtd){
+            $produto = Produto::find($id_produto);
+            $valor_total += $produto->valor * $qtd;
+        }
+
+        return view('cliente.pedidos', ['compra_finalizada' => 'Obrigado, por comprar conosco']);
+    }
+
+}
