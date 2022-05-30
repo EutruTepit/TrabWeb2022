@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
             Route::post('/produtos/update', 'updateProduto')->name('update_produto');
             Route::get('/produtos/delete/{id}', 'deleteProduto')->name('delete_Produto');
         });
+        
     });
 
     #Rotas para produtos 

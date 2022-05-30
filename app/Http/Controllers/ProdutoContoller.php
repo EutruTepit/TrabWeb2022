@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Fornecedor;
 use App\Models\Produto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProdutoContoller extends Controller
 {
@@ -34,6 +35,13 @@ class ProdutoContoller extends Controller
         $produto->preco = $req->input('preco');;
         $produto->dataLancamento = $req->input('dataLancamento');;
         $produto->idFornecedor = $req->input('idFornecedor');;
+
+        $produto->save();
+
+        $produto->slug = Str::slug("{$produto->nome}{$produto->id}");
+        $imagem = $req->file('arquivo');
+        $caminho_arquivo = $imagem->storeAs('produtos', "{$produto->id}.{$imagem->extension()}");
+        $produto->caminho_imagem = "/storage/$caminho_arquivo";
 
         $produto->save();
 
