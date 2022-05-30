@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
         Route::post('/clientes', 'cadastrarCliente')->name('cadastrar_cliente');
         Route::get('/clientes/perfil/', 'viewPerfilCliente')->name('view_perfil_cliente');
         Route::get('/clientes/perfil/update/', 'viewUpdateCliente')->name('view_update_cliente');
+        Route::post('/clientes/perfil/update/', 'updateCliente')->name('update_Cliente');
         Route::get('/clientes/perfil/delete/', 'deleteCliente')->name('delete_Cliente');
     });
 
@@ -57,6 +58,7 @@ Route::middleware('auth')->group(function () {
             Route::post('/produtos/update', 'updateProduto')->name('update_produto');
             Route::get('/produtos/delete/{id}', 'deleteProduto')->name('delete_Produto');
         });
+        
     });
 
 });
