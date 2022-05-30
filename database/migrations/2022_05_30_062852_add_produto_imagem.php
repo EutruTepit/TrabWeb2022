@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('produto', function(Blueprint $table){
             $table->string('slug', 300)->nullable();
-            $table->string('caminho_image', 300)->nullable();
+            $table->string('caminho_imagem', 300)->nullable();
         });
     }
 
@@ -27,7 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('produto', function(Blueprint $table){
-            $table->dropColumn(['slug', 'image']);
+            $table->dropColumn(['slug', 'caminho_imagem']);
         });
     }
 };
