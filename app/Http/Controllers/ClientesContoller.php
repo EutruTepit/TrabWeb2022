@@ -24,7 +24,7 @@ class ClientesContoller extends RegisteredUserController
         $cliente->complemento = $request->input("complemento");
         $cliente->numero = $request->input("numero");
         $cliente->bairro = $request->input("bairro");
-        $cliente->localidade = $request->input("localidade");
+        $cliente->localidade = $request->input("localidade"); #cidade
         $cliente->uf = $request->input("uf");
 
         $cliente->user_id = Auth::id();
@@ -32,7 +32,25 @@ class ClientesContoller extends RegisteredUserController
         $cliente->save();
 
         return to_route('dashboard');
-                
+    }
+
+    function updateCliente(Request $request){
+        $user = Auth::user();
+        
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+
+        $cliente = Cliente::where('user_id', '=', Auth::id())->first();
+
+        $cliente->telefone = $request->input('telefone');
+        $cliente->cep = $request->input("cep");
+        $cliente->logradouro = $request->input("logradouro");
+        $cliente->complemento = $request->input("complemento");
+        $cliente->numero = $request->input("numero");
+        $cliente->bairro = $request->input("bairro");
+        $cliente->localidade = $request->input("localidade"); #cidade
+        $cliente->uf = $request->input("uf");
+        return to_route('dashboard');
     }
 
     function viewUpdateCliente(){
