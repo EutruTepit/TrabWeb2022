@@ -7,8 +7,24 @@ use Illuminate\Support\Facades\Session;
 
 class VendasController extends Controller
 {
+    function viewPedidos(){
+        # Fazer a tabela de pedidos
+        return view('cliente.pedidos');
+    }
+
     function viewListCarrinho(){
-        return view('cliente.carrinho');
+        if(!Session::exists('carrinho')){
+            Session::put('carrinho', []);
+            return view('cliente.carrinho', ['produtos' => []]);
+        }
+
+        $produtos = [];
+        $lista_id = Session::get('carrinho');
+        foreach ($lista_id as $id_produto => $qtd){
+            $produtos[] = Produto::find($id_produto);
+        }
+
+        return view('cliente.carrinho', ['produtos' => $produtos]);
     }
 
     function addCarrinho($id_produto, $qtd){
