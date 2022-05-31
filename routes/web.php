@@ -3,6 +3,8 @@
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ClientesContoller;
 use App\Http\Controllers\ProdutoContoller;
+use App\Http\Controllers\FornecedorController;
+use App\Models\Fornecedor;
 use App\Http\Controllers\VendasController;
 use Illuminate\Support\Facades\Route;
 
@@ -59,7 +61,11 @@ Route::middleware('auth')->group(function () {
             Route::post('/produtos/update', 'updateProduto')->name('update_produto');
             Route::get('/produtos/delete/{id}', 'deleteProduto')->name('delete_Produto');
         });
-        
+        Route::controller(FornecedorController::class)->group(function () {
+            Route::get('/fornecedor/novo', 'viewAddFornecedor')->name('view_add_fornecedor');
+            Route::post('/fornecedor/novo', 'addFornecedor')->name('add_fornecedor');
+            Route::get('/fornecedores/lista', 'viewListFornecedores')->name('lita_fornecedor');
+        });
     });
 
 });
