@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cliente;
 use App\Models\Produto;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class VendasController extends Controller
 {
@@ -44,15 +46,27 @@ class VendasController extends Controller
         return to_route('view_list_carrinho');
     }
 
-    function finalizarCompra(Request $request){
-        $response = Http::withOptions([
-            'debug' => true,
-        ])->get('http://example.com/users');
+    function finalizarCompra(){
+        $carrinho = Session::get('carrinho');
+        $valor_total = 0.0;
+        foreach ($carrinho as $id_produto => $qtd){
+            $produto = Produto::find($id_produto);
+            $valor_total += $produto->valor * $qtd;
+        }
+        
+        $cliente = Cliente::where('user_id', '=', Auth::id())->first();
+        $cpf = Str::substr($cliente->cpf, 0, 3).".".Str::substr($cliente->cpf, 3, 3).".".Str::substr($cliente->cpf, 6, 3)."-".Str::substr($cliente->cpf, 9);
 
-        if($response->ok()){
+        $response = Http::post('http://10.41.1.4/api/pagamentos', [
+            "token" => '$2y$10$4hPGX6se8ihN.TaGYdk.Guwtpf7i1cw5rKImX36buEUPLrrnX1Un2',
+            "CpfCliente" => $cpf,
+            "valor" => $valor_total
+        ]);
+
+        if($response->status() == 201){
             return to_route('efetivar_Compra');
         }
-        return view('cliente.carrinho', ['compra_problema' => 'Obrigado, por comprar conosco']);
+        return view('cliente.carrinho', ['compra_problema' => 'Desculpa probrema no pagamento']);
     }
 
     function efetivarCompra(){
