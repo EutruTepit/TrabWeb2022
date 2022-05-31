@@ -5,6 +5,7 @@ use App\Http\Controllers\ClientesContoller;
 use App\Http\Controllers\ProdutoContoller;
 use App\Http\Controllers\FornecedorController;
 use App\Models\Fornecedor;
+use App\Http\Controllers\VendasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +37,15 @@ Route::middleware('auth')->group(function () {
         Route::get('/clientes/perfil/delete/', 'deleteCliente')->name('delete_Cliente');
     });
 
+    //Controlle sobre venda
+    Route::controller(VendasController::class)->group(function(){
+        Route::get('/carrinho', 'viewListCarrinho')->name('view_list_carrinho');
+        Route::get('/carrinho/add/{$id_produto}/{$qtd}', 'addCarrinho')->name('add_produto_carrinho');
+        Route::get('/carrinho/delete/{$id_produto}', 'deleteProduto')->name('delete_produto_carrinho');
+        Route::get('/carrinho/finalizarCompra', 'finalizarCompra')->name('finalizer_Compra');
+        Route::get('/carrinho/efetivarCompra', 'efetivarCompra')->name('efetivar_Compra');
+    });
+
     # Agrupamento de rotas referentes ao admin
     Route::middleware('verifica.admin')->group(function () {
         Route::get('/register/admin', [RegisteredUserController::class, 'createAdmin'])->name('view_registrar_admin');
@@ -57,6 +67,7 @@ Route::middleware('auth')->group(function () {
             Route::get('/fornecedores/lista', 'viewListFornecedores')->name('lita_fornecedor');
         });
     });
+
 });
 
 require __DIR__ . '/auth.php';
