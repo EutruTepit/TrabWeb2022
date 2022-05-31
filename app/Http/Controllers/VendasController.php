@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Produto;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Request;
 
 class VendasController extends Controller
 {
@@ -42,6 +44,17 @@ class VendasController extends Controller
         return to_route('view_list_carrinho');
     }
 
+    function finalizarCompra(Request $request){
+        $response = Http::withOptions([
+            'debug' => true,
+        ])->get('http://example.com/users');
+
+        if($response->ok()){
+            return to_route('efetivar_Compra');
+        }
+        return view('cliente.carrinho', ['compra_problema' => 'Obrigado, por comprar conosco']);
+    }
+
     function efetivarCompra(){
         $carrinho = Session::get('carrinho');
         $valor_total = 0.0;
@@ -49,6 +62,8 @@ class VendasController extends Controller
             $produto = Produto::find($id_produto);
             $valor_total += $produto->valor * $qtd;
         }
+        
+        Session::remove('carrinho');
 
         return view('cliente.pedidos', ['compra_finalizada' => 'Obrigado, por comprar conosco']);
     }
