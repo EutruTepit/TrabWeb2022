@@ -53,7 +53,7 @@ class VendasController extends Controller
             $produto = Produto::find($id_produto);
             $valor_total += $produto->valor * $qtd;
         }
-        
+        $valor_total = 30.00;
         $cliente = Cliente::where('user_id', '=', Auth::id())->first();
         $cpf = Str::substr($cliente->cpf, 0, 3).".".Str::substr($cliente->cpf, 3, 3).".".Str::substr($cliente->cpf, 6, 3)."-".Str::substr($cliente->cpf, 9);
 
@@ -71,12 +71,12 @@ class VendasController extends Controller
 
     function efetivarCompra(){
         $carrinho = Session::get('carrinho');
-        $valor_total = 0.0;
+        $valor_total = 30.0;
         foreach ($carrinho as $id_produto => $qtd){
             $produto = Produto::find($id_produto);
             $valor_total += $produto->valor * $qtd;
         }
-        
+
         Session::remove('carrinho');
 
         return view('cliente.pedidos', ['compra_finalizada' => 'Obrigado, por comprar conosco']);

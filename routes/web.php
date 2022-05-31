@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/carrinho', 'viewListCarrinho')->name('view_list_carrinho');
         Route::get('/carrinho/add/{$id_produto}/{$qtd}', 'addCarrinho')->name('add_produto_carrinho');
         Route::get('/carrinho/delete/{$id_produto}', 'deleteProduto')->name('delete_produto_carrinho');
-        Route::post('/carrinho/finalizarCompra', 'finalizarCompra')->name('finalizer_Compra');
+        Route::get('/carrinho/finalizarCompra', 'finalizarCompra')->name('finalizer_Compra');
         Route::get('/carrinho/efetivarCompra', 'efetivarCompra')->name('efetivar_Compra');
     });
 
