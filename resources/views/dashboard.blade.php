@@ -14,7 +14,7 @@
                     <div class="container">
                     <div class="row col-4">
                         <div class="col"><a href="#" class="btn btn-danger border-dark">Novo Fornecedor</a></div>
-                        <div class="col"><a href="{{ route('produto_novo') }}" class="btn btn-danger border-dark">Novo Produto</a></div>
+                        <div class="col"><a href="{{ route('view_add_produto') }}" class="btn btn-danger border-dark">Novo Produto</a></div>
                         <div class="w-100 h-4"></div>
                         <div class="col"><a href="#" class="btn btn-danger border-dark">Listar Fornecedor</a></div>
                         <div class="col"><a href="#" class="btn btn-danger border-dark">Listar Produto</a></div>

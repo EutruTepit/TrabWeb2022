@@ -15,7 +15,7 @@
         <input type="text" name="nome" id="preco" required><br>
 
         <label for="dataLancamento">Data de lançamento</label>
-        <input type="text" name="nome" id="dataLancamento" required><br>
+        <input type="date" name="dataLancamento" id="dataLancamento" required><br>
 
         <label for="fornecedor_id" class="form-label">Fornecedor</label>
         <select class="form-select" name="fornecedor_id" id="fornecedor_id" required>
